@@ -13,4 +13,4 @@ jobs:
           path: static-call-participant
           token: ${{ secrets.CHECKOUT_PRIVATE_REPO }}
       - name: Run tests
-        run: "docker run --rm -v 'static-call-participant:/opt/' node:18 ./opt/e2e.sh"
+        run: "cd static-call-participant && docker run --rm -v '$(pwd):/opt/' node:18 ./opt/e2e.sh"
