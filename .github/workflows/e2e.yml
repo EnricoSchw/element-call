@@ -15,4 +15,4 @@ jobs:
       - name: Build Image
         run: "cd static-call-participant && docker build --no-cache --tag matrixdotorg/chrome-node-static-call-participant:latest ."
       - name: Run E2E tests
-        run: "docker run --user root --rm -v '${{ github.workspace }}/static-call-participant:/opt/' matrixdotorg/chrome-node-static-call-participant:latest ./opt/e2e.sh"
+        run: "docker run --rm matrixdotorg/chrome-node-static-call-participant:latest ./e2e.sh"
