@@ -1,4 +1,4 @@
-name: Run E2E tests
+name: Run E2E test
 on: push
 jobs:
   e2e:
