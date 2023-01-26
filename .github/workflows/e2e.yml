@@ -16,6 +16,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           cache: "yarn"
+          cache-dependency-path: static-call-participant/yarn.lock
       - name: Install dependencies
         run: "cd static-call-participant && yarn install"
       - name: Start Test cases
