@@ -23,4 +23,4 @@ jobs:
       - name: Install chromium
         run: "cd static-call-participant && npx playwright install-deps"
       - name: Start Test cases
-        run: "cd static-call-participant && HTTP_SERVER_PUBLIC_DOMAIN=localhost yarn start start -f callemshost-users.txt -h @e2e-caller:call.ems.host -c e2e-caller -l e2e-caller -r @e2etest:call.ems.host -e https://element-call.netlify.app"
+        run: "cd static-call-participant && HEADLESS_BROWSER=true HTTP_SERVER_PUBLIC_DOMAIN=localhost yarn start start -f callemshost-users.txt -h @e2e-caller:call.ems.host -c e2e-caller -l e2e-caller -r @e2etest:call.ems.host -e https://element-call.netlify.app"
