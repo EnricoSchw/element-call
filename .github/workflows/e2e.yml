@@ -2,8 +2,13 @@ name: Run E2E tests
 on: push
 jobs:
   e2e:
-    name: Run E2E tests
+    name: Build E2E tests
     runs-on: ubuntu-latest
+    container:
+      image: node:18
+      volumes:
+        - static-call-participant:/static-call-participant
+      options: --cpus 1
     steps:
       - name: Check out test private repo
         uses: actions/checkout@v3
@@ -16,13 +21,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           cache: "yarn"
-          token: ${{ secrets.CHECKOUT_PRIVATE_REPO}}
+          token: ${{ secrets.CHECKOUT_PRIVATE_REPO }}
           cache-dependency-path: static-call-participant/yarn.lock
       - name: Install dependencies
         run: "cd static-call-participant && yarn install"
-      - name: Install chromium
+      - name: Install xx
         run: "cd static-call-participant && npx playwright install-deps"
-      - name: Check Network
-        run: netstat -lt
-      - name: Start Test cases
-        run: "cd static-call-participant && HEADLESS_BROWSER=true HTTP_SERVER_PUBLIC_DOMAIN=localhost yarn start start -f callemshost-users.txt -h @e2e-caller:call.ems.host -c e2e-caller -l e2e-caller -r @e2etest:call.ems.host -e https://element-call.netlify.app"
+      - name: Run
+        run: "cd static-call-participant && yarn start -f callemshost-users.txt -h @e2e-caller:call.ems.host -c e2e-caller -l e2e-caller -r @e2etest:call.ems.host -e https://element-call.netlify.app"
