@@ -11,7 +11,7 @@ jobs:
           repository: vector-im/static-call-participant
           ref: refs/heads/e2e
           path: static-call-participant
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GitHub_PAT }}
       - name: Yarn cache
         uses: actions/setup-node@v3
         with:
