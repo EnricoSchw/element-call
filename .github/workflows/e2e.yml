@@ -5,5 +5,12 @@ jobs:
     name: Build E2E tests
     runs-on: ubuntu-latest
     steps:
-      - name: Install dependencies
-        run: "docker run --rm node:18 echo"
+      - name: Check out test private repo
+        uses: actions/checkout@v3
+        with:
+          repository: vector-im/static-call-participant
+          ref: refs/heads/e2e
+          path: static-call-participant
+          token: ${{ secrets.CHECKOUT_PRIVATE_REPO }}
+      - name: Run tests
+        run: "docker run --rm -v 'static-call-participant:/opt/' -it node:18 ./opt/e2e.sh"
